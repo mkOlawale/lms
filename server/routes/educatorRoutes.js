@@ -5,7 +5,7 @@ import { updateRoleEducator } from "../controller/educatorController.js";
 
 const educatorRouter = express.Router();
 
-educatorRouteer.get('/update-role', updateRoleEducator)
+educatorRouter.get('/update-role', updateRoleEducator)
 
 
 
