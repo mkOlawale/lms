@@ -1,4 +1,5 @@
 import express from "express"
+import bodyParser from "body-parser";
 import cors from "cors"
 import "dotenv/config"
 import connectDB from "./configs/mongodb.js";
@@ -22,7 +23,12 @@ app.use(clerkMiddleware())
 
 // routes
 app.get("/", (req, res) => res.send("API WORKING"));
-app.post('/clerk', express.json(), clerkWebhooks);
+// app.post('/clerk', express.json(), clerkWebhooks);
+app.post(
+  "/clerk",
+  bodyParser.raw({ type: "application/json" }),
+  clerkWebhooks
+);
 app.post('/api/educator', express.json(), educatorRouter);
 
 
