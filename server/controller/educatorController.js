@@ -10,7 +10,7 @@ export const updateRoleEducator = async (req, res) => {
                 role: 'educator',
             }
         })
-        res.json({success: true, message: 'You can publis a course now.'})
+        res.json({success: true, message: 'You can publis a course now. huh'})
     } catch (error) {
         res.json({success: false, message: error.message})
         
