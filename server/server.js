@@ -17,18 +17,23 @@ const app = express();
 // connection
 await connectDB();
 
+
+// app.use(express.json());
+app.use(express.json({
+  verify: (req, res, buf) => { 
+    req.rawBody = buf.toString();
+  }
+}));
+
+
 // middlewares
 app.use(cors());
 app.use(clerkMiddleware())
 
+
 // routes
 app.get("/", (req, res) => res.send("API WORKING"));
-// app.post('/clerk', express.json(), clerkWebhooks);
-app.post(
-  "/clerk",
-  bodyParser.raw({ type: "application/json" }),
-  clerkWebhooks
-);
+app.post('/clerk', clerkWebhooks);
 app.post('/api/educator', express.json(), educatorRouter);
 
 
